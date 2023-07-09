@@ -85,12 +85,20 @@ Some function you should be aware of
 
 ## 🚀 About Me
 
-Allow me to introduce Arjun Sherpa, an enthusiastic individual with a passion for ML, Deep Learning, Data Science, and computational neuroscience. Arjun's passion for computational neuroscience reflects their interest in understanding the intricate workings of the brain.
+Allow me to introduce Arjun Sherpa, an enthusiastic individual with a passion for ML, Deep Learning, Data Science, and computational neuroscience.
 
 Exploring the intersection of neuroscience and Deep Neural Networks(artificial intelligence), seeking to unlock new insights into cognition and behavior is very much fascinating to me.
 
 I am continuously trying to learn & update myself with new things on this emerging fascinating fields.
 
+
+reach me: 
+Github: https://github.com/settings/admin
+
+linkedIn: https://www.linkedin.com/in/arjun-sherpa-153673198/
+
+gmail: righthuman082@gmail.com
+contact: 9810129951
 
 reach me: 
 Github: https://github.com/settings/admin
