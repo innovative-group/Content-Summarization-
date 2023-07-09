@@ -1,6 +1,6 @@
 
-# Project Title
-[ContentText Summarizer] 
+# Project Title: [ContentText Summarizer] 
+
 This is an AI powered Text/Content Summarizer web app developed on Python and Flask.
 
 
