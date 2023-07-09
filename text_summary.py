@@ -1,0 +1,164 @@
+import spacy
+from spacy.lang.en.stop_words import STOP_WORDS
+from string import punctuation
+from heapq import nlargest
+
+text= """As of my knowledge cutoff in September 2021, China has made significant
+advancements in its space exploration program, including missions to the 
+moon. China's space agency, the China National Space Administration 
+(CNSA), has successfully conducted multiple missions to the moon. The
+most notable of these missions is the Chang'e program, named after the 
+Chinese moon goddess. Here are some key missions and accomplishments."""
+
+
+def summarizer(inputParagraph):
+    stopwords= list(STOP_WORDS)
+    # print(inputParagraph)
+
+    nlp= spacy.load('en_core_web_sm')
+    doc= nlp(inputParagraph)
+    #print(doc)
+
+
+    # ------>> tokenization <<--------------
+    # --> It returns the list of token from doc var
+    tokens= [token.text for token in doc] 
+
+
+
+    # counting the frequency of each word
+    word_freq= {}
+    for word in doc:
+        if word.text.lower() not in stopwords and word.text.lower() not in punctuation:
+            if word.text not in word_freq.keys():
+                word_freq[word.text]= 1
+            else:
+                word_freq[word.text] += 1    
+
+
+    #print(word_freq)            
+
+
+
+
+
+    # -----------> Normalizing the freq of each word <<-------------------
+    # for normalizing freq of each world lets divide the 
+    # [freq of partcicular word] / [height freq]"
+
+    max_freq= max(word_freq.values())  # --> finding the hieght freq 
+
+    for word in word_freq.keys():
+        word_freq[word]= word_freq[word]/max_freq
+
+    # print(word_freq)
+
+
+
+
+
+
+
+    # ------------->> Creating dictionary for frequency of sentence <<------------
+    '''
+    Like in above we have created a dictionary for storing word frequency. Similary let
+    us create another dictionary for storing sentence frequency.
+    '''
+
+    # At first lets make list of sentence tokens
+    sent_tokens= [sent for sent in doc.sents ]
+
+    sent_freq= {}
+    for sent in sent_tokens:
+        for word in sent:
+            if word.text in word_freq.keys():
+                if sent not in sent_freq.keys():
+                    sent_freq[sent]= word_freq[word.text]
+                else:
+                    sent_freq[sent] += word_freq[word.text]
+
+
+    # print(sent_freq)                
+
+
+
+
+
+    # ---------------> Now lets be ready to make summary <<------------------------
+    '''
+
+        # 1>  .get() vs .get
+        ----------------------
+        1> .get(): It is a method: It is a built-in method provided by dictionaries in Python.
+                It is used to retrieve the value associated with a specified key in
+                the dictionary. The method is called with parentheses and can take
+                an optional default value parameter.
+
+        2> .get :  It is an attribute: It refers to the underlying '.get()' method 
+                itself without invoking it. It can be accessed without using 
+                parentheses, and you can assign it to a variable or pass it as an
+                argument to other functions.
+
+        Example: 
+        --------
+        person = {'name': 'John', 'age': 30}
+
+        name_1 = person.get('name')
+        print(name_1)  # --->  Output: John
+
+        get_method = person.get
+        name_2 = get_method('name')
+        print(name_2)  # --->  Output: John
+
+
+
+
+        # 2>  nlargest(n, iterable, key)    
+        ---------------------------------
+        The nlargest function from the heapq module is used to retrieve then largest
+        elements from a given iterable based on a specified key. The elements are 
+        determined to be the largest based on the comparison of the values generated
+        by the key function.
+            
+            n        : The number of largest elements to retrieve.
+            iterable : The iterable from which the largest elements will be selected.  
+            key      : The key parameter allows you to define a function that will be 
+                    applied to each element in the iterable to generate a value for
+                    comparison. The nlargest function then selects the n largest 
+                    elements based on these generated values.
+
+
+
+        First of all lets take/select a length of sentence that how many sentence 
+        do we goona generate as summary output and we select sentence from "sent_freq"
+        dictionary based on the "key= sent_freq.get"
+
+        nlargest() function with key=sent_freq.get is used to retrieve the sentences
+        with the highest frequencies from the sent_freq dictionary. The key parameter
+        allows us to specify the values (frequencies) associated with each sentence 
+        for comparison to determine the largest sentences.
+
+
+    '''
+
+
+
+
+    select_len= int(len(sent_tokens) * 0.3)      
+    summary= nlargest(select_len, sent_freq, key=sent_freq.get)  
+    # print(summary) --> nlargest() return sentence with in the form of list but
+    #                    we require in the form of text.
+
+    final_summary= [word.text for word in summary]
+    summary= ' '.join(final_summary)
+
+    # ------->> now lets return orginal text & summary text with their length <<----------
+
+
+    return summary, doc, len(inputParagraph.split(' ')), len(summary.split(' '))
+    # doc is orginal text. 
+
+
+
+
+

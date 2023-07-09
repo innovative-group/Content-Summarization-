@@ -1,0 +1,18 @@
+nlp= spacy.load('en_core_web_sm')
+doc= nlp(text)
+
+Explanation: 
+
+"nlp= spacy.load('en_core_web_sm')": 
+-------------------------------------
+It loads the English language model
+'en_core_web_sm' provided by spaCy. This model is trained to perform various
+natural language processing tasks such as part-of-speech tagging, named entity recognition, dependency parsing, and more.
+
+"doc= nlp(text)": 
+-----------------
+It processes the text using the loaded language model. It creates a Doc object,
+which represents a sequence of tokens with linguistic annotations. The 'text' 
+variable containing the input text is passed to the language model for analysis 
+and annotation.
+
