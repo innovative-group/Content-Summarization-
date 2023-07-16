@@ -1,85 +1,42 @@
 
 # Project Title: [ContentText Summarizer] 
 
-This is an AI powered Text/Content Summarizer web app developed on Python and Flask.
+This is a prototype of basic chatbots that aims to create a basic chatbot capable of understanding user intents related to checking account balance, transaction history, as well as 
+handling greetings and goodbyes. Throughout the development of this chatbot, I had the opportunity to learn and implement various Natural Language Processing (NLP) techniques.
+
+
+## Output[Screenshots]
+-----------------------
+![rasachatbot output](https://github.com/innovative-group/Content-Summarization-/assets/51012877/7c37192e-7e80-400d-a9cd-62550ff65cbb)
 
 
 
-## Screenshots
-![Gif  Text-Summarizer](https://github.com/innovative-group/Content-Summarization-/assets/51012877/545f7f64-28b0-4203-b971-8dd6f7249c2b)
+## Output[video]
+-----------------
+https://github.com/innovative-group/Content-Summarization-/assets/51012877/2e3ed6c6-4256-44ce-be6c-98eb1acfcaea
 
 
 
 ## Documentation
-Object Detection & Counting:
-----------------------------
-It is a simple AI powered Text/Content Summarizer web app developed on Python and Flask.
+==================
 
-This web app will generate summary of your entered text in a simple and faster way.
-Which will you to get good insight of your content in short time.
+The key features of the chatbot include:
+1> Intent Classification: 
+---------------------------
+The chatbot is trained to classify user intents, allowing it to distinguish between checking account balance, transaction history, greetings, goodbyes, and other basic intents.
 
+2> Entity Recognition:
+-----------------------
+ The chatbot utilizes Entity Recognition to identify relevant pieces of information from user inputs, such as account numbers, names, and phone numbers.
 
-imports used:
------------------------------
-1> import spacy,
-2> from spacy.lang.en.3> stop_words import STOP_WORDS
-4> from string import punctuation
-5> from heapq import nlargest
-    
-Some function you should be aware of 
-----------------------------------
-    1> .get() 
-    2> .get
-    3>  nlargest() 
+3> Slot Management:
+---------------------
+ Extracted entity values are stored in slots, enabling the chatbot to retain and process the relevant information during the conversation flow.
 
-        1> .get(): It is a method: It is a built-in method provided by dictionaries in Python.
-                It is used to retrieve the value associated with a specified key in
-                the dictionary. The method is called with parentheses and can take
-                an optional default value parameter.
-
-        2> .get :  It is an attribute: It refers to the underlying '.get()' method 
-                itself without invoking it. It can be accessed without using 
-                parentheses, and you can assign it to a variable or pass it as an
-                argument to other functions.
-
-        Example: 
-        --------
-        person = {'name': 'John', 'age': 30}
-
-        name_1 = person.get('name')
-        print(name_1)  # --->  Output: John
-
-        get_method = person.get
-        name_2 = get_method('name')
-        print(name_2)  # --->  Output: John
-    
-
-
- nlargest(n, iterable, key)    
-        
-        The nlargest function from the heapq module is used to retrieve then largest
-        elements from a given iterable based on a specified key. The elements are 
-        determined to be the largest based on the comparison of the values generated
-        by the key function.
-            
-            n        : The number of largest elements to retrieve.
-            iterable : The iterable from which the largest elements will be selected.  
-            key      : The key parameter allows you to define a function that will be 
-                    applied to each element in the iterable to generate a value for
-                    comparison. The nlargest function then selects the n largest 
-                    elements based on these generated values.
-
-
-
-        First of all lets take/select a length of sentence that how many sentence 
-        do we goona generate as summary output and we select sentence from "sent_freq"
-        dictionary based on the "key= sent_freq.get"
-
-        nlargest() function with key=sent_freq.get is used to retrieve the sentences
-        with the highest frequencies from the sent_freq dictionary. The key parameter
-        allows us to specify the values (frequencies) associated with each sentence 
-        for comparison to determine the largest sentences.
-   
+4> Data Integration: 
+---------------------
+For this task, a simple dictionary-based database is used to match and verify user-provided values against pre-defined account information.
+Personalized Responses: When a user's information matches the stored database, the chatbot generates personalized responses. For example: "Dear {name}, your account {account number} has a balance of Rs. 1000."   
 
 
 
